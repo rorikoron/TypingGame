@@ -5,18 +5,22 @@
 @mixin zenkaku-bold {
     font-family: "Zen Kaku Gothic Antique";
     font-weight: 700;
+    font-style: normal;
 }
 @mixin zenkaku-medium{
     font-family: "Zen Kaku Gothic Antique";
     font-weight: 500;
+    font-style: normal;
 }
 @mixin zenkaku-regular {
     font-family: "Zen Kaku Gothic Antique";
     font-weight: 400;
+    font-style: normal;
 }
 @mixin zenkaku-light {
     font-family: "Zen Kaku Gothic Antique";
     font-weight: 300;
+    font-style: normal;
 }
 
 @mixin roboto-regular{

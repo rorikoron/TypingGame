@@ -47,13 +47,12 @@
     }
 
     &__list{
-        $font-size: 1.6rem;
         $radius-border: 14px;
 
         display: flex;
         flex-direction: column;
         gap: $gap-both 0;
-        font-size: $font-size;
+        font-size: variable.$font-small;
         list-style: none;
 
         &__child{

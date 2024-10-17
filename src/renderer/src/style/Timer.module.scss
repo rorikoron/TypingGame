@@ -1,3 +1,31 @@
-.preGameCountDown{
-    
+@use 'variable';
+@use 'fonts';
+
+.preGameCountdown{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    @include fonts.zenkaku-bold;
+
+    &__time{
+        font-size: variable.$font-large;
+
+    }
+    &__title{
+        font-size: variable.$font-regular;
+    }
+}
+
+.inGameCountdown{
+    position: fixed;
+    right: variable.$padding-both-timer;
+    top: variable.$padding-both-timer;
+
+    @include fonts.zenkaku-bold;
+    font-size: variable.$font-small;
 }

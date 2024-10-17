@@ -6,6 +6,7 @@
     width: 100dvw;
 
     &:last-child{
+        margin-left: variable.$width-header-close;
         width: calc(100dvw - variable.$width-header-close);
         position: relative;
     }
