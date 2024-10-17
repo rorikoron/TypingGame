@@ -1,0 +1,13 @@
+@use 'variable';
+@use 'fonts';
+
+.link{
+    $padding-vertical-child: 6px;
+    $padding-horizontal-child: 12px;
+    padding: $padding-vertical-child $padding-horizontal-child;
+
+    color: variable.$foreground;
+    text-decoration: none;
+    display: block;
+    @include fonts.roboto-regular;
+}

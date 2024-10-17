@@ -1,0 +1,67 @@
+@use 'variable';
+@use 'fonts';
+
+
+.header{
+    $padding-vertical-header: 60px;
+    $padding-horizontal-header: 22px;
+    $gap-both: 14px;
+
+    $icon-size: 20px;
+
+    height: 100%;
+    width: variable.$width-header-extend;
+
+    position: fixed;
+    top: 0;
+    left: calc(variable.$width-header-close - variable.$width-header-extend);   
+    padding: $padding-vertical-header $padding-horizontal-header;
+    padding-right: variable.$width-header-close;
+    background-color: color-mix(in srgb, variable.$color-main 70%, transparent) ;
+
+    transition: left 0.4s;
+    
+    &[data-extend="true"]{
+        left: 0;
+        &::after{
+            left: calc(variable.$width-header-extend - variable.$width-header-close / 2);;
+        }
+    }
+
+    &::after{
+        content: "";
+        height: $icon-size;
+        aspect-ratio: 1/1;
+
+        position: fixed;
+        top: calc(50dvh - $icon-size);
+        left: calc(variable.$width-header-close / 2);
+        transform: translateX(-50%);
+
+        background: variable.$foreground;
+        mask-image: url("../image/icon/bars-solid.svg");
+        mask-size: cover;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        transition: left 0.4s;
+    }
+
+    &__list{
+        $font-size: 1.6rem;
+        $radius-border: 14px;
+
+        display: flex;
+        flex-direction: column;
+        gap: $gap-both 0;
+        font-size: $font-size;
+        list-style: none;
+
+        &__child{
+            border-radius: $radius-border;
+            &:hover{
+                background: color-mix(in srgb, variable.$color-main 80%, #000) ;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,12 @@
+@use 'variable';
+
+
+.content{
+    height: 100dvh;
+    width: 100dvw;
+
+    &:last-child{
+        width: calc(100dvw - variable.$width-header-close);
+        position: relative;
+    }
+}

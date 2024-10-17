@@ -1,11 +1,7 @@
+
+
 :root {
-  --background: #5d5c5f;
-  --foreground: #efefef;
-
-  --color-main: #3b3a42;
-
-  --width-header-extended: 26dvw;
-
+  
 
   --ev-c-white: #ffffff;
   --ev-c-white-soft: #f8f8f8;
@@ -44,6 +40,7 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   font-weight: normal;
 }
 
