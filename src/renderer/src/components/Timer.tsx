@@ -1,30 +1,31 @@
-import useGameState, { GameStatus } from "@renderer/hook/useGameState";
 import { useEffect, useState } from "react";
 import style from '@renderer/style/Timer.module.scss'
+import { useRecoilState } from "recoil";
+import { GamePhase, gamePhaseAtom } from "@renderer/util/GameAtom";
 
 
 const Timer : React.FC = () =>{
 
-    const { gameState, setGameState } = useGameState();
+    const [gamePhase, setGamePhase] = useRecoilState(gamePhaseAtom);
+
+    //const { gameState, setGameState } = useGameState();
     const [inGameCountdown, setInGameCountdown] = useState<number>(180);
     const [preGameCountdown, setPreGameCountdown] = useState<number>(5);
 
 
     useEffect(() => {
         if(preGameCountdown > 0){
-            console.log(preGameCountdown)
-            console.log(gameState)
             const countdown =  setInterval(() => {
                 setPreGameCountdown(t => t - 1)
             }, 1000);
             return () =>  clearInterval(countdown);
         }else{
-            setGameState(GameStatus.inGame);
+            setGamePhase(GamePhase.inGame);
         }
     }, [preGameCountdown]);
 
     useEffect(() => {
-        if(gameState !== GameStatus.inGame) return;
+        if(gamePhase !== GamePhase.inGame) return;
 
         if(inGameCountdown > 0){
             const countdown =  setInterval(() => {
@@ -32,9 +33,9 @@ const Timer : React.FC = () =>{
             }, 1000);
             return () =>  clearInterval(countdown);
         }else{
-            setGameState(GameStatus.postGame);
+            setGamePhase(GamePhase.postGame);
         }
-    }, [gameState, inGameCountdown]);
+    }, [gamePhase, inGameCountdown]);
 
 
     const PreGameCountdown : React.FC = () => {
@@ -56,9 +57,9 @@ const Timer : React.FC = () =>{
         <>
             {
                 {
-                    [GameStatus.preGame]: <PreGameCountdown />,
-                    [GameStatus.inGame]: <InGameCountdown />
-                }[gameState]
+                    [GamePhase.preGame]: <PreGameCountdown />,
+                    [GamePhase.inGame]: <InGameCountdown />
+                }[gamePhase]
             }
         </>
     )

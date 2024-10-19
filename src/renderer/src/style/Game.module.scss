@@ -1,0 +1,43 @@
+@use 'variable';
+@use 'fonts';
+
+.main{
+    padding: variable.$padding-vertical-main variable.$padding-horizontal-main;
+
+    .text{
+        $space-letter: 1.6px;
+        $padding_underbar: 6px;
+
+        font-size: variable.$font-semi-small;
+        letter-spacing: $space-letter;
+
+
+        &__typed{
+            @include fonts.roboto-regular;
+            color: variable.$foreground;
+
+            
+            position: relative;
+            
+            &::after{
+                content: "_";
+                @include fonts.roboto-regular;
+                font-size: calc(variable.$font-semi-small + $padding_underbar);
+                position: absolute;
+                right: calc(-1 * variable.$font-semi-small - $padding_underbar / 2);
+                bottom: calc(-0.5 * variable.$font-semi-small);
+
+                transform: translateX(-50%);
+            }
+        }
+
+        &__untyped{
+            @include fonts.roboto-regular;
+            color: variable.$color-untyped;
+    
+        }
+        
+    }
+    
+   
+}
