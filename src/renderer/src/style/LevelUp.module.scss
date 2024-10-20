@@ -1,0 +1,32 @@
+.menu{
+
+    $padding-horizontal-menu: 8dvw;
+    $gap-width: 40px;
+    $mask-color: rgb(35, 35, 35);
+    
+    height: 100%;
+    width: 100%;
+
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+
+    display: grid;
+    justify-content: space-around;
+    align-content: center;
+    grid-template-columns: repeat(3, 24dvw);
+    &::before{
+        content: "";
+        height: 100%;
+        width: 100%;
+
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+
+        background: $mask-color;
+        opacity: 0.7;
+    }
+}

@@ -1,0 +1,17 @@
+@use 'variable';
+
+.label{
+    font-size: variable.$font-tiny;
+}
+.slider{
+    $height-slider: 20px;
+
+    appearance: none;
+    width: 100%;
+    height: $height-slider;
+    border: 1px solid color-mix(in srgb, variable.$foreground 40%, transparent);
+    border-radius: 12px;
+    &::-webkit-slider-thumb{
+        appearance: none;
+    }
+}

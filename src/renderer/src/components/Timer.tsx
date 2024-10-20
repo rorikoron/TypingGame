@@ -58,8 +58,8 @@ const Timer : React.FC = () =>{
             {
                 {
                     [GamePhase.preGame]: <PreGameCountdown />,
-                    [GamePhase.inGame]: <InGameCountdown />
-                }[gamePhase]
+                    [GamePhase.postGame]: <></> 
+                }[gamePhase] || <InGameCountdown />
             }
         </>
     )

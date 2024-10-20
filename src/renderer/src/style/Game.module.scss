@@ -2,16 +2,40 @@
 @use 'fonts';
 
 .main{
+    display: grid;
+    grid-template-rows: 1fr 120px;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+
     padding: variable.$padding-vertical-main variable.$padding-horizontal-main;
 
     .text{
         $space-letter: 1.6px;
         $padding_underbar: 6px;
+        $margin_vertical_text: 40px;
+        $margin_horizontal_text: 32px;
+        
+        $padding-horizontal-text: 20px;
 
+        $border-width: 1.6px;
+        $border-radius: 12px;
+        
+        height: calc(100% - $margin_vertical_text * 2);
+        width: calc(100% - $margin_horizontal_text * 2);
+        padding: 0 $padding-horizontal-text;
+
+        border: $border-width solid variable.$foreground;
+        border-radius: $border-radius;
+
+        display: grid;
+        place-items: center;
         font-size: variable.$font-semi-small;
         letter-spacing: $space-letter;
 
-
+        &__wrapper{
+            
+        }
         &__typed{
             @include fonts.roboto-regular;
             color: variable.$foreground;
@@ -37,6 +61,23 @@
     
         }
         
+    }
+    
+    .status{
+        $padding-horizontal-status: 20px;
+
+        height: 100%;
+        width: 100%;
+        padding: 0 $padding-horizontal-status;
+        display: grid;
+        place-items: center;
+
+        &__exp{
+            width: 100%;
+            overflow: hidden;
+            
+
+        }
     }
     
    

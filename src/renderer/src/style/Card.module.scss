@@ -1,0 +1,27 @@
+@use 'variable';
+@use 'fonts';
+
+.card{
+    $padding-both-caption: 20px;
+
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    border: 1px solid white;
+    aspect-ratio: 2 / 3;
+
+    &__image{
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        
+    }
+
+    &__caption{
+        @include fonts.zenkaku-medium;
+        font-size: variable.$font-tiny;
+
+        padding: $padding-both-caption;
+    }
+}

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Timer from "./Timer";
 import Game from "./Game";
-import { RecoilRoot, useRecoilState } from "recoil";
+import LevelUp from "./LevelUp";
+import {  useRecoilState } from "recoil";
 import { GamePhase, gamePhaseAtom } from "@renderer/util/GameAtom";
 
 
@@ -9,25 +10,26 @@ import { GamePhase, gamePhaseAtom } from "@renderer/util/GameAtom";
 const GameMgr : React.FC = () => {
     //const { gameState, setGameState } = useGameState();
     const [gamePhase, setGamePhase] = useRecoilState(gamePhaseAtom);
+    const returnToGame = () => setGamePhase(GamePhase.inGame);
     
     useEffect(() => {
         setGamePhase(GamePhase.preGame);
     }, [])
-    
-    useEffect(() => {
-        console.log(gamePhase);
-
-    }, [gamePhase])
-
 
     return(
         <>
             {
                 {
                     [GamePhase.preGame]: <></>,
-                    [GamePhase.inGame]: <Game />,
+                    [GamePhase.postGame]: <></>,
 
-                }[gamePhase] || <div>Unknown Game State</div>
+                }[gamePhase] || <Game />
+            }
+
+            {
+                {
+                    [GamePhase.inGame__LevelUp]: <LevelUp onClickEffect={returnToGame} />
+                }[gamePhase]
             }
             <Timer />
         </>
