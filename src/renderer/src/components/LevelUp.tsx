@@ -1,6 +1,6 @@
 import useSkill, { SkillProps } from '@renderer/hook/useSkill';
 import style from '@renderer/style/LevelUp.module.scss';
-import { gameVariableAtom, gameVariableProps, ownedSkillAtom } from '@renderer/util/GameAtom';
+import { gameMetaAtom, gameMetaProps, gameVariableAtom, gameVariableProps } from '@renderer/util/GameAtom';
 import { useRecoilState } from 'recoil';
 import Card from './Card';
 import useKeyboard from '@renderer/hook/useKeyboard';
@@ -13,17 +13,18 @@ const LevelUp : React.FC<LevelUpProps> = ({onClickEffect}) => {
 
     const [selectableSkill, setSelectableSkill]  = useState<SkillProps[]>([]);
     const { skills } = useSkill();
-    const [ ownedSkill, setOwnedSkill ] = useRecoilState<string[]>(ownedSkillAtom);
+    const [ {ownedSkill}, setGameMeta ] = useRecoilState<gameMetaProps>(gameMetaAtom);
     const [ gameVariable ] = useRecoilState<gameVariableProps>(gameVariableAtom);
 
-    
+    // keys used to choose skill
     const selectKeys = ['1', '2', '3', '4'];
     const { keyPressed } = useKeyboard();
 
     useEffect(() => {
+        console.log(ownedSkill);
         setSelectableSkill([]);
 
-        // since useState updates asyncly, in order not to infinite loop use temporaly array
+        // since useState updates asyncly, in order not to infinite loop, use temporaly array
         let tempSelectedSkill:SkillProps[] = [];
         let currentSkillCount = selectableSkill.length, currentOwnedCount = ownedSkill.length;
 
@@ -32,28 +33,24 @@ const LevelUp : React.FC<LevelUpProps> = ({onClickEffect}) => {
             const rand = Math.floor(Math.random() * skills.length);
     
             // if it has added to candidates or it has owned
-            if(tempSelectedSkill.includes(skills[rand]) || ownedSkill.includes(skills[rand].name)) continue;
+            if(tempSelectedSkill.includes(skills[rand]) || ownedSkill.some(({name}) => name === skills[rand].name)) continue;
+            console.log(ownedSkill.includes(skills[rand] ));
+            console.log(ownedSkill);
+            console.log(tempSelectedSkill);
             tempSelectedSkill.push(skills[rand]); 
             currentSkillCount++;
             currentOwnedCount++;
-            console.log(tempSelectedSkill);
-            console.log(tempSelectedSkill.length);
         }
-
         setSelectableSkill(selectable => [...selectable, ...tempSelectedSkill]);
-
-        const names =tempSelectedSkill.map((skill) =>(skill.name));
-        setOwnedSkill(owned => [...owned, ...names]);
 
     }, [])
 
     useEffect(() => {
         selectableSkill.forEach((skill, idx) => {
             if(keyPressed[selectKeys[idx]]){
+                setGameMeta(m => ({...m, ownedSkill: [...ownedSkill, skill]}));
                 skill.effect();
                 onClickEffect();
-                console.log(skill.explanation);
-                console.log(gameVariable.ExpRatio);
             }
         })
     }, [keyPressed]);

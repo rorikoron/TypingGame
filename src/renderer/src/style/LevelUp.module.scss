@@ -15,7 +15,11 @@
     display: grid;
     justify-content: space-around;
     align-content: center;
-    grid-template-columns: repeat(3, 24dvw);
+    grid-template-columns: repeat(auto-fit, 24dvw);
+
+    > figure{
+        flex-grow: 1;
+    }
     &::before{
         content: "";
         height: 100%;

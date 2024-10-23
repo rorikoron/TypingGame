@@ -1,0 +1,23 @@
+{
+    "React and TypeScript": [
+        "const [text, setText] = useState<string>('placeholder');",
+        "useEffect(() => { setAssetArray([]); }, []);",
+        "const GameMgr : React.FC<GameMgrProps> = () => (<Game />);",
+        "setTime(t => t + 1);",
+        "setAssetObject(o => { ...o, image: {newImagePath} });",
+        "interface ButtonProps{ Spinner: ReactElement, OnClickEvent: () => void };",
+        "const [state, setState] = useState<number>(0);",
+        "<button onClick={() => setCount(c => c+1)} />",
+        "items.map(item => <li key={item.name} ={...item} />",
+        "const value = loading ? <Spinner /> : <Dashboard />;",
+        "<input type='text' value={text} onChange={handleChange} />",
+        "const handleClick = () => alert('Clicked!');",
+        "const user<UserProps> = { name: 'FakeUser', age: 25 };",
+        "<div className={isActive ? 'active' : 'inactive'}>",
+        "<img src={imagePath} alt={discription} data-width={width} />"
+    ],
+    "Python": [
+
+    ]
+    
+}

@@ -8,7 +8,7 @@ interface CardProps{
     onClickEffect?: () => void
 }
 
-const Card : React.FC<CardProps> = ({path, alt, explanation, onClickEffect}) => {
+const Card : React.FC<CardProps> = ({path, alt, explanation}) => {
     console.log({path})
     return(
         <figure className={`${style.card}`}>

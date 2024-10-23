@@ -14,12 +14,16 @@ export default function useSkill(){
     const AdvancedFormula = (x: number) => 0.5*x*x + 2.5*x + 15;
 
 
+    /*
+    * IDEAS:
+    * NO-miss streak
+    */
     const skills : SkillProps[] = [
         {
             name: "No Poverty",
             path: "/sdgs/E-WEB-Goal-01.png",
-            explanation: "Get times 1.25 score",
-            effect: () => { setGameVariable(p => ({...p, ScoreRatio: 1.25})) }, 
+            explanation: "Get score x 1.25",
+            effect: () => { setGameVariable(p => ({...p, ScoreRatio: 125})) }, 
         }, {
             name: "Zero Hunger",
             path: "/sdgs/E-WEB-Goal-02.png",
@@ -53,7 +57,7 @@ export default function useSkill(){
         }, {
             name: "Descent Work and Economic Growth",
             path: "/sdgs/E-WEB-Goal-08.png",
-            explanation: "EXP get 1.2 times",
+            explanation: "Get EXP x 1.2",
             effect: () => { setGameVariable(p => ({...p, ExpRatio: 1.2})) }, 
         }, {
             name: "Industry, Innovation and Infrastructure",
@@ -99,7 +103,7 @@ export default function useSkill(){
             name: "Partnerships for The Goals",
             path: "/sdgs/E-WEB-Goal-17.png",
             explanation: "Add 30 seconds",
-            effect: () => {}, 
+            effect: () => { setGameVariable(p => ({...p, AdditionalTime: 30})) }, 
         }, 
     ]
 

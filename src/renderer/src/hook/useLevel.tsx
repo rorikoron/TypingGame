@@ -17,8 +17,9 @@ export default function useLevel(levelup_function){
         }
     );
 
+    // use * 10 / 10 to show only 1 digit under floating point
     const addLevel = () => setLevelSystem(props => ({...props, level: props.level+1 }));
-    const addExp = () => setLevelSystem(props => ({...props, exp: props.exp+gameVariable.ExpRatio }));
+    const addExp = () => setLevelSystem(props => ({...props, exp: Math.round((props.exp+gameVariable.ExpRatio) * 10) / 10 }));
 
     const threshold = gameVariable.ExpFormula(levelSystem.level);
 

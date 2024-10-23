@@ -1,19 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Timer from "./Timer";
 import Game from "./Game";
+import Report from "./Report";
 import LevelUp from "./LevelUp";
 import {  useRecoilState } from "recoil";
-import { GamePhase, gamePhaseAtom } from "@renderer/util/GameAtom";
-
+import { gameMetaAtom, GamePhase, gamePhaseAtom, languageType } from "@renderer/util/GameAtom";
+import QuestionData from '@renderer/Questions.json';
 
 
 const GameMgr : React.FC = () => {
     //const { gameState, setGameState } = useGameState();
     const [gamePhase, setGamePhase] = useRecoilState(gamePhaseAtom);
+    const [gameMeta, setGameMeta] = useRecoilState(gameMetaAtom);
+
     const returnToGame = () => setGamePhase(GamePhase.inGame);
+    const question : string[] = QuestionData[gameMeta.language];
+    const setLanguage = ( lang :languageType ) =>  setGameMeta(m => ({...m, language: lang}))
     
     useEffect(() => {
         setGamePhase(GamePhase.preGame);
+        setLanguage(languageType.react_tsx);
+
     }, [])
 
     return(
@@ -21,9 +28,9 @@ const GameMgr : React.FC = () => {
             {
                 {
                     [GamePhase.preGame]: <></>,
-                    [GamePhase.postGame]: <></>,
+                    [GamePhase.postGame]: <Report {...gameMeta} />,
 
-                }[gamePhase] || <Game />
+                }[gamePhase] || <Game question = {question} />
             }
 
             {

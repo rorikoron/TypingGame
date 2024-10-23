@@ -1,0 +1,91 @@
+@use 'variable';
+@use 'fonts';
+
+.main{
+    height: 100%;
+    width: 100%;
+    padding: variable.$padding-vertical-main variable.$padding-horizontal-main;
+    position: relative;
+
+
+    .title{
+        $padding-horizontal-text: 64px;
+        $padding-horizontal-title: 72px;
+        $padding-vertical-title: 22px;
+        $border-radius: 6px;
+        
+        position: relative;
+        left: calc(-1 * variable.$padding-horizontal-main - variable.$width-header-close - $padding-horizontal-title) ;
+        padding-right: $padding-horizontal-text;
+        padding-left: calc(variable.$padding-horizontal-main + $padding-horizontal-title + variable.$width-header-close + $padding-horizontal-text);
+        border-radius: $border-radius;
+
+        letter-spacing: 1.2px;
+        word-spacing: 3px;
+        background: variable.$foreground;
+        color: variable.$background;
+        font-size: variable.$font-regular;
+        @include fonts.zenkaku-regular;
+
+        &::before{
+            content: "";
+
+            position: absolute;
+            right: calc($padding-horizontal-text / 2);
+            top: 0;
+            transform: translateX(50%);
+            width: 18px;
+            height: 100%;
+            font-size: variable.$font-regular;
+            background: rgb(140, 121, 144);
+        }
+
+    }
+
+    .content{
+        $gap-horizontal: 40px;
+        display: grid;
+        grid-template-columns: 1fr 40dvw;
+        gap: $gap-horizontal;
+        height: 100%;
+        width: 100%;
+
+        .status{
+            $padding-horizontal-status: 42px;
+            $padding-vertical-status: 28px;
+
+            padding: $padding-vertical-status $padding-horizontal-status;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .label{
+                display: inline-flex;
+                justify-content: space-between;
+                font-size: variable.$font-regular;
+                @include fonts.zenkaku-regular;
+                border-bottom: 0.8px solid variable.$foreground;
+            }
+
+            .value{
+                font-size: variable.$font-regular;
+                @include fonts.zenkaku-light;
+            }
+
+            &__list{
+                $size-image: 80px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 12px;
+
+                > li{
+                    height: $size-image;
+                    >img{
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

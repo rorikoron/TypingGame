@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import style from '@renderer/style/Timer.module.scss'
 import { useRecoilState } from "recoil";
-import { GamePhase, gamePhaseAtom } from "@renderer/util/GameAtom";
+import { GamePhase, gamePhaseAtom, gameVariableAtom, gameVariableProps } from "@renderer/util/GameAtom";
 
 
 const Timer : React.FC = () =>{
 
     const [gamePhase, setGamePhase] = useRecoilState(gamePhaseAtom);
-
+    const [gameVariable] = useRecoilState<gameVariableProps>(gameVariableAtom);
+    
     //const { gameState, setGameState } = useGameState();
-    const [inGameCountdown, setInGameCountdown] = useState<number>(180);
+    const [inGameCountdown, setInGameCountdown] = useState<number>(gameVariable.DefaultTime);
     const [preGameCountdown, setPreGameCountdown] = useState<number>(5);
 
+    useEffect(() => {
+        setInGameCountdown(t => t + gameVariable.AdditionalTime)
+    }, [gameVariable.AdditionalTime])
 
     useEffect(() => {
         if(preGameCountdown > 0){
